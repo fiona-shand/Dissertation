@@ -12,15 +12,16 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
-// Route to handle API request
+// API route to handle prompt submission
 app.post('/api/analyze-prompt', async (req, res) => {
     const { prompt } = req.body;
 
     try {
         console.log("Prompt received:", prompt); // Log input prompt
 
+        // Use the newer model, such as gpt-3.5-turbo
         const response = await openai.completions.create({
-            model: "text-davinci-003",
+            model: "gpt-3.5-turbo",  // Updated model name
             prompt: `Analyze this prompt for its effectiveness: "${prompt}" 
                      Suggest a better way to structure it for better results.`,
             max_tokens: 100,
@@ -38,7 +39,8 @@ app.post('/api/analyze-prompt', async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 5000;
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
