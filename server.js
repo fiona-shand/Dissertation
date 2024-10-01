@@ -19,11 +19,13 @@ app.post('/api/analyze-prompt', async (req, res) => {
     try {
         console.log("Prompt received:", prompt); // Log input prompt
 
-        // Use the newer model, such as gpt-3.5-turbo
-        const response = await openai.completions.create({
-            model: "gpt-3.5-turbo",  // Updated model name
-            prompt: `Analyze this prompt for its effectiveness: "${prompt}" 
-                     Suggest a better way to structure it for better results.`,
+        // Using chat model, switch to /v1/chat/completions
+        const response = await openai.chat.completions.create({
+            model: "gpt-3.5-turbo",  // Using chat-based model
+            messages: [
+                { role: "system", content: "You are a helpful assistant that improves the user's prompts." },
+                { role: "user", content: `Analyze this prompt for its effectiveness: "${prompt}". Suggest a better way to structure it for better results.` }
+            ],
             max_tokens: 100,
         });
 
@@ -31,14 +33,13 @@ app.post('/api/analyze-prompt', async (req, res) => {
 
         res.json({
             originalPrompt: prompt,
-            suggestions: response.choices[0].text.trim(),
+            suggestions: response.choices[0].message.content.trim(),
         });
     } catch (error) {
         console.error("API error:", error); // Log error
         res.status(500).json({ error: 'An error occurred during API request.' });
     }
 });
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
