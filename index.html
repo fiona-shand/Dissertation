@@ -25,6 +25,12 @@
                     <input type="text" id="userPrompt" placeholder="Enter your question..." required>
                     <button type="submit">Submit</button>
                 </form>
+
+                <!-- Result box that will display the response -->
+                <div id="resultContainer" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc; display: none;">
+                    <h3>Suggestions for Improving Your Prompt:</h3>
+                    <p id="suggestions"></p>
+                </div>
             </div>
         </section>
     </main>
@@ -32,12 +38,17 @@
     <footer>
         <p>© 2024 Prompt Engineering Tool | Created by Fiona</p>
     </footer>
+
     <script>
         document.getElementById('promptForm').addEventListener('submit', async function(e) {
             e.preventDefault();
         
             const userInput = document.getElementById('userPrompt').value;
             console.log("User input:", userInput);  // Log the input for debugging
+
+            // Clear previous suggestions
+            document.getElementById('suggestions').textContent = "";
+            document.getElementById('resultContainer').style.display = 'none';
     
             try {
                 const response = await fetch('http://localhost:3000/api/analyze-prompt', {
@@ -55,13 +66,9 @@
                 const result = await response.json();
                 console.log("API response:", result);  // Log the API response for debugging
     
-                // Display the results
-                const resultContainer = document.createElement('div');
-                resultContainer.innerHTML = `
-                    <h3>Suggestions for Improving Your Prompt:</h3>
-                    <p>${result.suggestions}</p>
-                `;
-                document.body.appendChild(resultContainer);
+                // Display the result in the result container
+                document.getElementById('suggestions').textContent = result.suggestions;
+                document.getElementById('resultContainer').style.display = 'block';
             } catch (error) {
                 console.error("Error during form submission:", error);
                 alert("There was an error submitting the prompt. Please try again.");
@@ -71,3 +78,4 @@
     
 </body>
 </html>
+
