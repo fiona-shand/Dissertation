@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prompt Engineering Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <h1>Prompt Engineering</h1>
+        </nav>
+    </header>
+
+    <main>
+        <section class="landing">
+            <div class="landing-content">
+                <h2>Enhance your prompts. Get better results.</h2>
+                <p>Input your question below and receive suggestions on how to improve its effectiveness.</p>
+
+                <form id="promptForm">
+                    <input type="text" id="userPrompt" placeholder="Enter your question..." required>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Prompt Engineering Tool | Created by Fiona</p>
+    </footer>
+    <script>
+        document.getElementById('promptForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+        
+            const userInput = document.getElementById('userPrompt').value;
+            console.log("User input:", userInput);  // Log the input for debugging
+    
+            try {
+                const response = await fetch('http://localhost:5000/api/analyze-prompt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ prompt: userInput })
+                });
+    
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+    
+                const result = await response.json();
+                console.log("API response:", result);  // Log the API response for debugging
+    
+                // Display the results
+                const resultContainer = document.createElement('div');
+                resultContainer.innerHTML = `
+                    <h3>Suggestions for Improving Your Prompt:</h3>
+                    <p>${result.suggestions}</p>
+                `;
+                document.body.appendChild(resultContainer);
+            } catch (error) {
+                console.error("Error during form submission:", error);
+                alert("There was an error submitting the prompt. Please try again.");
+            }
+        });
+    </script>
+    
+</body>
+</html>
