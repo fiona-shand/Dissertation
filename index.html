@@ -21,16 +21,16 @@
                 <h2>Enhance your prompts. Get better results.</h2>
                 <p>Input your question below and receive suggestions on how to improve its effectiveness.</p>
 
+                <!-- Result box that will display the response -->
+                <div id="resultContainer" style="display: none;">
+                    <h3>Suggestions for Improving Your Prompt:</h3>
+                    <p id="suggestions"></p>
+                </div>
+
                 <form id="promptForm">
                     <input type="text" id="userPrompt" placeholder="Enter your question..." required>
                     <button type="submit">Submit</button>
                 </form>
-
-                <!-- Result box that will display the response -->
-                <div id="resultContainer" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc; display: none;">
-                    <h3>Suggestions for Improving Your Prompt:</h3>
-                    <p id="suggestions"></p>
-                </div>
             </div>
         </section>
     </main>
@@ -69,13 +69,18 @@
                 // Display the result in the result container
                 document.getElementById('suggestions').textContent = result.suggestions;
                 document.getElementById('resultContainer').style.display = 'block';
+
+                // Move the prompt form upward
+                document.getElementById('promptForm').style.position = 'relative';
+                document.getElementById('promptForm').style.top = '-20000px';  // Moves it 150px higher
+
             } catch (error) {
                 console.error("Error during form submission:", error);
                 alert("There was an error submitting the prompt. Please try again.");
             }
         });
     </script>
-    
 </body>
 </html>
+
 
