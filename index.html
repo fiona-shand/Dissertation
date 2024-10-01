@@ -16,23 +16,33 @@
     </header>
 
     <main>
-        <section class="landing">
-            <div class="landing-content">
-                <h2>Enhance your prompts. Get better results.</h2>
-                <p>Input your question below and receive suggestions on how to improve its effectiveness.</p>
+        <div class="container">
+            <!-- Left side (Input Form) -->
+            <section class="left-side">
+                <div class="landing-content">
+                    <h2>Input Your Question</h2>
+                    <p>Input your question below and receive suggestions on how to improve its effectiveness.</p>
 
-                <!-- Result box that will display the response -->
-                <div id="resultContainer" style="display: none;">
-                    <h3>Suggestions for Improving Your Prompt:</h3>
-                    <p id="suggestions"></p>
+                    <form id="promptForm">
+                        <input type="text" id="userPrompt" placeholder="Enter your question..." required>
+                        <button type="submit">Submit</button>
+                    </form>
                 </div>
+            </section>
 
-                <form id="promptForm">
-                    <input type="text" id="userPrompt" placeholder="Enter your question..." required>
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
-        </section>
+            <!-- Divider Line -->
+            <div class="divider"></div>
+
+            <!-- Right side (Result) -->
+            <section class="right-side">
+                <div class="result-content">
+                    <h2>Suggestions for Improving Your Prompt:</h2>
+                    <div id="resultContainer" style="display: none;">
+                        <p id="suggestions"></p>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer>
@@ -78,3 +88,4 @@
     </script>
 </body>
 </html>
+
