@@ -70,10 +70,6 @@
                 document.getElementById('suggestions').textContent = result.suggestions;
                 document.getElementById('resultContainer').style.display = 'block';
 
-                // Move the prompt form upward
-                document.getElementById('promptForm').style.position = 'relative';
-                document.getElementById('promptForm').style.top = '-20000px';  // Moves it 150px higher
-
             } catch (error) {
                 console.error("Error during form submission:", error);
                 alert("There was an error submitting the prompt. Please try again.");
@@ -82,5 +78,3 @@
     </script>
 </body>
 </html>
-
-
