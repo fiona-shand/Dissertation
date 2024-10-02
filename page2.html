@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prompt Engineering Tool</title>
+    <link rel="stylesheet" href="page2styles.css">
+</head>
+
+<body>
+    <!-- Sidebar (Vertical Navigation Bar) -->
+    <div class="sidebar">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <!-- Left side (Input Form) -->
+        <section class="left-side">
+            <div class="landing-content">
+                <div class="background-question">
+                <h2>Input Your Question</h2>
+                <p>Input your question below and receive suggestions on how to improve its effectiveness.</p>
+                </div>
+                <br><br><br>
+
+                <form id="promptForm">
+                    <!-- Dropdown for selecting type -->
+                    <label for="promptType" class="dropdown-label">Select type of reasoning:</label>
+                    <select id="promptType" name="promptType" class="dropdown">
+                        <option value="" disabled selected>Select type of reasoning</option> <!-- Placeholder -->
+                        <option value="chain-of-thought">Chain of Thought</option>
+                        <option value="role-playing">Role Playing</option>
+                    </select>
+                
+                    <input type="text" id="userPrompt" placeholder="Enter your question..." required>
+                    <button type="form-submit">Submit</button>
+                </form>
+                
+            </div>
+        </section>
+
+        <!-- Right side (Result) -->
+        <section class="right-side">
+            <div class="result-content">
+                <h2>Suggestions for Improving Your Prompt:</h2>
+                <div id="resultContainer" style="display: none;">
+                    <p id="suggestions"></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2024 Prompt Engineering Tool | Created by Fiona</p>
+    </footer>
+
+    <script>
+        document.getElementById('promptForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+        
+            const userInput = document.getElementById('userPrompt').value;
+            const promptType = document.getElementById('promptType').value;
+
+            document.getElementById('suggestions').textContent = "";
+            document.getElementById('resultContainer').style.display = 'none';
+    
+            try {
+                const response = await fetch('http://localhost:3000/api/analyze-prompt', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ 
+                        prompt: userInput,
+                        type: promptType
+                    })
+                });
+    
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+    
+                const result = await response.json();
+                document.getElementById('suggestions').textContent = result.suggestions;
+                document.getElementById('resultContainer').style.display = 'block';
+
+            } catch (error) {
+                console.error("Error during form submission:", error);
+                alert("There was an error submitting the prompt. Please try again.");
+            }
+        });
+    </script>
+</body>
+</html>
+

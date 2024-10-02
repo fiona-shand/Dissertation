@@ -1,181 +1,132 @@
-/* Global styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(135deg, #1E1F36, #16051e);  /* Dark blue to dark purple gradient */
     color: #FFFFFF;
-    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
+    min-height: 100vh;
 }
 
-header {
-    width: 100%;
-    padding: 20px;
-    text-align: center;
-    background-color: rgba(13, 13, 36, 0.9); /* Slight transparency for sleekness */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-}
-
-header h1 {
-    color: #FFF;
-    font-size: 2.5rem;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-}
-
-/* Container for the split layout */
-.container {
+.layout {
     display: flex;
     width: 100%;
-    height: calc(100vh - 100px); /* Adjust height for footer/header */
-    align-items: center;
+}
+
+.sidebar {
+    width: 150px; /* Keeping the reduced width */
+    background: linear-gradient(180deg, #0D0D24, #1A1B27);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100vh;
+    border-right: 1px solid #2D2E3F; /* Thin border for a clean separation */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 15px;
+}
+
+.sidebar ul li a {
+    font-family: 'Roboto', sans-serif; /* Sleek and modern font */
+    font-size: 1.1rem;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, padding-left 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: #2E3A59; /* Smooth hover effect */
+    padding-left: 15px; /* Subtle indent on hover */
+}
+
+.sidebar ul li a:active {
+    background-color: #4B64C7; /* Active state color */
+}
+
+.sidebar ul li a:focus {
+    outline: none;
+    background-color: #6E85E3;
+}
+
+
+.container {
+    display: flex;
     justify-content: space-between;
-    padding: 20px;
+    padding: 30px;
+    width: 100%;
 }
 
-/* Left side styling */
-.left-side, .right-side {
+/* Left side for the prompt input */
+.left-side {
     width: 45%;
-    padding: 20px;
 }
 
-.landing-content {
-    text-align: left;
-}
-
-.landing-content h2, .result-content h2 {
-    font-size: 1.8rem;
-    color: #FFF;
-    margin-bottom: 10px;
-}
-
-.landing-content p, .result-content p {
-    font-size: 1rem;
-    color: #BBB;
-    margin-bottom: 20px;
-}
-
-/* Form styles */
-
-
-/* input[type="text"] {
+form textarea {
     width: 100%;
     padding: 15px;
     font-size: 1rem;
+    border-radius: 8px;
     border: 2px solid #6E85E3;
-    border-radius: 10px;
     background-color: #1C1F3A;
-    color: #FFF;
-    margin-bottom: 10px;
-} */
-
-input[type="text"]::placeholder {
-    color: #BBB;
+    color: white;
 }
 
 button {
-    padding: 15px 30px;
+    padding: 15px;
+    margin-top: 10px;
     background-color: #6E85E3;
     color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 1.2rem;
-    transition: background-color 0.3s ease;
 }
 
 button:hover {
     background-color: #4B64C7;
 }
 
-/* Right side (Result box) */
-.result-content {
-    text-align: left;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 10px;
-    padding: 20px;
-}
-
-#resultContainer {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 10px;
-    border-radius: 10px;
-    color: #FFF;
-    display: none;
-}
-
-#resultContainer p {
-    font-size: 1.1rem;
-    color: #AAA;
-}
-/* Adjusted font size for Suggestions title */
-.result-content h2 {
-    font-size: 1.4rem;  /* Smaller font size for suggestions title */
-    color: #FFF;
-    margin-bottom: 10px;
-}
-
-
-/* Divider line */
-.divider {
-    width: 1px;
-    height: 80%;
-    background-color: #6E85E3;
-    margin: 0 20px;
-}
-
-/* Footer */
-footer {
-    width: 100%;
-    padding: 20px;
-    background-color: rgba(13, 13, 36, 0.9);  /* Same as header for consistency */
+/* Right side for the effectiveness score */
+.right-side {
+    width: 45%;
     text-align: center;
-    color: #FFF;
-    font-size: 0.9rem;
-    position: relative;
 }
 
-
-/* Form styles */
-form {
+.score-circle {
+    width: 300px;  /* Increased size */
+    height: 300px; /* Increased size */
+    background-color: #FF6384;
+    border-radius: 50%;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
 }
 
-/* Dropdown styles */
-.dropdown {
+.score-circle span {
+    font-size: 3rem;
+    color: white;
+}
+
+#effectivenessScore {
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #0D0D24;
+    color: white;
+    position: relative;
+    bottom: 0;
     width: 100%;
-    max-width: 500px;
-    padding: 10px;
-    font-size: 1rem;
-    border: 2px solid #6E85E3;
-    border-radius: 10px;
-    background-color: #1C1F3A;
-    color: #FFF;
-    margin-bottom: 15px;
 }
-
-.dropdown-label {
-    font-size: 1rem;
-    color: #BBB;
-    margin-bottom: 5px;
-}
-
-input[type="text"] {
-    width: 100%;
-    padding: 15px;
-    font-size: 1rem;
-    border: 2px solid #6E85E3;
-    border-radius: 10px;
-    background-color: #1C1F3A;
-    color: #FFF;
-    margin-bottom: 10px;
-}
-

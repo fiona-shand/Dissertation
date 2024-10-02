@@ -9,48 +9,48 @@
 </head>
 
 <body>
-    <header>
-        <nav>
-            <h1>Prompt Engineering</h1>
+    <div class="layout">
+        <!-- Sidebar (Vertical Navigation Bar) -->
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
         </nav>
-    </header>
 
-    <main>
-        <div class="container">
-            <!-- Left side (Input Form) -->
-            <section class="left-side">
-                <div class="landing-content">
-                    <h2>Input Your Question</h2>
-                    <p>Input your question below and receive suggestions on how to improve its effectiveness.</p>
+        <!-- Main content -->
+        <div class="content-area">
+            <main>
+                <div class="container">
+                    <!-- Left side (Input Form and Welcome Message) -->
+                    <section class="left-side">
+                        <div class="landing-content">
+                            <div class="welcome-box">
+                                <h2>Welcome to prompt engineering!</h2>
+                                <p>Enter your question and see how it scores.</p>
+                            </div>
+                            <form id="promptForm">
+                                <textarea id="userPrompt" placeholder="Prompt question" required rows="4"></textarea>
+                                <button type="submit">Try another one</button>
+                            </form>
+                        </div>
+                    </section>
 
-                    <form id="promptForm">
-                        <!-- Dropdown for selecting type -->
-                        <label for="promptType" class="dropdown-label">Select type of reasoning:</label>
-                        <select id="promptType" name="promptType" class="dropdown">
-                            <option value="chain-of-thought">Chain of Thought</option>
-                            <option value="role-playing">Role Playing</option>
-                        </select>
-
-                        <input type="text" id="userPrompt" placeholder="Enter your question..." required>
-                        <button type="submit">Submit</button>
-                    </form>
+                    <!-- Right side (Effectiveness Score) -->
+                    <section class="right-side">
+                        <div class="score-content">
+                            <h2>Effectiveness Score</h2>
+                            <div id="effectivenessCircle" class="score-circle">
+                                <span id="score">0</span>
+                            </div>
+                            <button id="getTo100" class="get-to-100-button">Get me to 100 ></button>
+                        </div>
+                    </section>
                 </div>
-            </section>
-
-            <!-- Divider Line -->
-            <div class="divider"></div>
-
-            <!-- Right side (Result) -->
-            <section class="right-side">
-                <div class="result-content">
-                    <h2>Suggestions for Improving Your Prompt:</h2>
-                    <div id="resultContainer" style="display: none;">
-                        <p id="suggestions"></p>
-                    </div>
-                </div>
-            </section>
+            </main>
         </div>
-    </main>
+    </div>
 
     <footer>
         <p>© 2024 Prompt Engineering Tool | Created by Fiona</p>
@@ -61,42 +61,19 @@
             e.preventDefault();
         
             const userInput = document.getElementById('userPrompt').value;
-            const promptType = document.getElementById('promptType').value; // Get the selected value from the dropdown
 
-            console.log("User input:", userInput);
-            console.log("Prompt type:", promptType);  // Log the selected prompt type for debugging
+            // For demo purposes, we simulate a score computation.
+            const score = Math.floor(Math.random() * 100);  // Random score between 0-100
+            document.getElementById('score').textContent = score;
 
-            // Clear previous suggestions
-            document.getElementById('suggestions').textContent = "";
-            document.getElementById('resultContainer').style.display = 'none';
-    
-            try {
-                const response = await fetch('http://localhost:3000/api/analyze-prompt', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ 
-                        prompt: userInput,
-                        type: promptType  // Send the selected prompt type to the server
-                    })
-                });
-    
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-    
-                const result = await response.json();
-                console.log("API response:", result);  // Log the API response for debugging
-    
-                // Display the result in the result container
-                document.getElementById('suggestions').textContent = result.suggestions;
-                document.getElementById('resultContainer').style.display = 'block';
+            // Store the score and user input in localStorage to transfer to the new page.
+            localStorage.setItem('userPrompt', userInput);
+            localStorage.setItem('effectivenessScore', score);
+        });
 
-            } catch (error) {
-                console.error("Error during form submission:", error);
-                alert("There was an error submitting the prompt. Please try again.");
-            }
+        // "Get me to 100" button redirects to the alternate prompting page
+        document.getElementById('getTo100').addEventListener('click', function() {
+            window.location.href = 'page2.html';  // Redirect to the new page
         });
     </script>
 </body>
