@@ -1,0 +1,204 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1E1F36, #16051e);  /* Dark blue to dark purple gradient */
+    color: #FFFFFF;
+    min-height: 100vh; /* Ensure body height spans the full viewport */
+    display: flex;
+    flex-direction: column; /* Stack content and footer vertically */
+}
+
+nav.sidebar {
+    width: 180px; /* Set width of sidebar */
+    background-color: var(--nav-bg); /* Ensuring the same background as nav.css */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    padding-block: 2rem;
+}
+
+.nav-list {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+}
+
+.nav-list li {
+    margin: 0;
+}
+
+.nav-list a {
+    display: block;
+    padding: 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+/* Content area next to sidebar */
+.content {
+    width: calc(100% - 180px); /* Ensure content fills the remaining space after sidebar */
+    height: auto; /* Adjust height to fit content */
+    display: flex; /* Flexbox to split the left and right sections */
+    justify-content: space-between;
+    padding-bottom: 20px; /* Ensure there's space between the content and footer */
+    flex-grow: 1; /* Ensures content grows and pushes footer to the bottom */
+}
+
+/* Left side (Prompt Form) */
+.left-side {
+    width: 45%;  /* Left side takes 45% */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* Vertically center the content */
+    padding: 20px;
+}
+
+.landing-content {
+    text-align: left;
+    width: 100%;
+}
+
+.landing-content h2 {
+    font-size: 1.8rem;
+    color: #FFF;
+    margin-bottom: 10px;
+}
+
+.landing-content p {
+    font-size: 1rem;
+    color: #BBB;
+    margin-bottom: 20px;
+}
+.background-question{
+    color: #BBB;
+    border-radius: 10px;
+
+
+}
+
+/* Prompt Form Styling */
+form#promptForm {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label.dropdown-label {
+    font-size: 1rem;
+    color: #BBB;
+    margin-bottom: 5px;
+}
+
+select#promptType {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    border: 2px solid #6E85E3;
+    border-radius: 5px;  /* Rounded corners */
+    background-color: #1C1F3A;
+    color: #FFF;
+    margin-bottom: 20px;
+    appearance: none; /* Removes default browser styling */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 20 20"><polygon points="0,0 10,10 20,0" fill="white"/></svg>'); /* Custom dropdown arrow */
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow for sleek look */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+select#promptType:focus {
+    border-color: #4B64C7;  /* Focused state border color */
+    box-shadow: 0 0 8px rgba(75, 100, 199, 0.5);  /* Sleek focus shadow */
+}
+
+input#userPrompt {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    border: 2px solid #6E85E3;
+    border-radius: 10px;
+    background-color: #1C1F3A;
+    color: #FFF;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Light shadow for sleek look */
+}
+
+input#userPrompt::placeholder {
+    color: #BBB;
+}
+
+button[type="form-submit"] {
+    padding: 15px 30px;
+    background-color: #6E85E3;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sleek shadow */
+}
+
+button[type="form-submit"]:hover {
+    background-color: #4B64C7;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Hover effect with shadow */
+}
+
+.right-side {
+    width: 50%;  /* Right side takes 50% */
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.result-content {
+    width: 100%;  /* Full width of the right side */
+    padding: 5px;  /* 5px padding around the entire box */
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    border: 2px solid #6E85E3;
+    box-sizing: border-box;  /* Include padding in the width */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;  /* Ensure the title stays at the top */
+    padding-bottom: 40px;  /* Add more padding to the bottom */
+}
+
+.result-content h2 {
+    font-size: 1.5rem; /* Larger text for title */
+    margin-bottom: 10px;
+    text-align: center;
+    padding-top: 10px;  /* Padding at the top of the suggestions box */
+}
+
+#resultContainer {
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #FFFFFF;
+    text-align: center;
+    flex-grow: 1;
+    padding-bottom: 40px;  /* Increase bottom padding for spacing */
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    padding: 20px;
+    transform: translateX(-140px);
+    background-color: rgba(13, 13, 36, 0.9);
+    text-align: center (calc(- transform));
+    color: #FFF;
+    font-size: 0.9rem;
+    position: fixed;
+    bottom: 0;
+    margin-top: auto; /* Push footer to the bottom */
+ 
+}

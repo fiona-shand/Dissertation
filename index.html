@@ -5,16 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Prompt Engineering Tool</title>
-    <link rel="stylesheet" href="styles.css">
+    <!-- Link nav.css first so its styles are applied and not overridden by styles.css -->
+    <link rel="stylesheet" href="CSS/nav.css">
+    <!-- Link styles.css for the page content -->
+    <link rel="stylesheet" href="CSS/styles.css">
 </head>
 
 <body>
     <div class="layout">
         <!-- Sidebar (Vertical Navigation Bar) -->
         <nav class="sidebar">
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
+            <ul class="nav-list">
+                <li><a href="index.html">Home</a></li>
+                <br>
+                <li><a href="page2.html">Practice</a></li>
+                <br>
                 <li><a href="#">Contact</a></li>
             </ul>
         </nav>
@@ -30,6 +35,7 @@
                                 <h2>Welcome to prompt engineering!</h2>
                                 <p>Enter your question and see how it scores.</p>
                             </div>
+                            <br><br>
                             <form id="promptForm">
                                 <textarea id="userPrompt" placeholder="Prompt question" required rows="4"></textarea>
                                 <button type="submit">Try another one</button>
@@ -44,7 +50,7 @@
                             <div id="effectivenessCircle" class="score-circle">
                                 <span id="score">0</span>
                             </div>
-                            <button id="getTo100" class="get-to-100-button">Get me to 100 ></button>
+                            <button id="getTo100" class="get-to-100-button">Get me to 100 </button>
                         </div>
                     </section>
                 </div>
@@ -78,4 +84,5 @@
     </script>
 </body>
 </html>
+
 

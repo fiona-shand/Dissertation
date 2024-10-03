@@ -5,19 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Prompt Engineering Tool</title>
-    <link rel="stylesheet" href="page2styles.css">
+    <link rel="stylesheet" href="CSS/nav.css"> <!-- Use the same nav.css -->
+    <link rel="stylesheet" href="CSS/page2styles.css"> <!-- Specific styles for page 2 -->
 </head>
 
 <body>
     <!-- Sidebar (Vertical Navigation Bar) -->
-    <div class="sidebar">
-        <ul>
+    <nav class="sidebar">
+        <ul class="nav-list">
             <li><a href="index.html">Home</a></li>
-            <li><a href="#">About</a></li>
+            <br>
+            <li><a href="page2.html">Practice</a></li>
+            <br>
             <li><a href="#">Contact</a></li>
         </ul>
-    </div>
+    </nav>
 
+    <!-- Content Area -->
     <div class="content">
         <!-- Left side (Input Form) -->
         <section class="left-side">
@@ -36,6 +40,7 @@
                         <option value="chain-of-thought">Chain of Thought</option>
                         <option value="role-playing">Role Playing</option>
                     </select>
+                    <br>
                 
                     <input type="text" id="userPrompt" placeholder="Enter your question..." required>
                     <button type="form-submit">Submit</button>
@@ -54,6 +59,7 @@
             </div>
         </section>
     </div>
+    <br><br>
 
     <footer>
         <p>© 2024 Prompt Engineering Tool | Created by Fiona</p>

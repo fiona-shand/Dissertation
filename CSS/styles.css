@@ -1,0 +1,122 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background:  #1E1F36; 
+    /* background: linear-gradient(105deg, #1E1F36, #16051e);   */
+
+    color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+nav.sidebar {
+    width: 180px; /* Set width of sidebar */
+    background-color: var(--nav-bg); /* Ensuring the same background as nav.css */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    padding-block: 2rem;
+}
+.nav-list {
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+}
+
+.nav-list li {
+    margin: 0;
+}
+
+.nav-list a {
+    display: block;
+    padding: 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+.layout {
+    display: flex;
+    width: 100%;
+}
+
+.content-area {
+   
+        width: calc(100% - 180px); /* Ensure content fills the remaining space after sidebar */
+        height: auto; /* Adjust height to fit content */
+        display: flex; /* Flexbox to split the left and right sections */
+        justify-content: space-between;
+        padding-bottom: 20px; /* Ensure there's space between the content and footer */
+        flex-grow: 1; /* Ensures content grows and pushes footer to the bottom */
+    
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    width: 100%;
+}
+
+.left-side {
+    width: 45%;
+}
+
+form textarea {
+    width: 100%;
+    padding: 15px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 2px solid #6E85E3;
+    background-color: #1C1F3A;
+    color: white;
+}
+
+button {
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #6E85E3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4B64C7;
+}
+
+.right-side {
+    width: 45%;
+    text-align: center;
+}
+
+.score-circle {
+    width: 300px;
+    height: 300px;
+    background-color: #FF6384;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.score-circle span {
+    font-size: 3rem;
+    color: white;
+}
+
+/* Footer */
+footer {
+    width: 100%;
+    padding: 20px;
+    transform: translateX(-140px);
+    background-color: rgba(13, 13, 36, 0.9);
+    text-align: center (calc(- transform));
+    color: #FFF;
+    font-size: 0.9rem;
+    position: fixed;
+    bottom: 0;
+    margin-top: auto; /* Push footer to the bottom */
+ 
+}

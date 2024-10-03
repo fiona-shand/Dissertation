@@ -1,0 +1,96 @@
+:root {
+    --body-bg: #1E1F36;
+    --nav-bg: #234;
+    --border-radius: 1rem; 
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-family: system-ui;
+  }
+  
+  body {
+    margin: 0;
+    font-size: 1.25rem;
+    background: var(--body-bg);
+    padding-inline-start: 20rem;
+    color: white;
+  }
+  
+  nav.sidebar {
+    background: var(--nav-bg);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding-block: 2rem;
+  }
+  
+  .nav-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+  }
+  
+  .nav-list a {
+    color: white;
+    display: block;
+    text-decoration: none;
+  }
+  
+  .nav-list li {
+    padding-block: 1rem;
+    padding-inline: 2rem;
+    margin-inline: 1rem 0;
+    box-shadow: 2px 0 0 var(--body-bg);
+  }
+  
+  /* Hover state (moved the active state logic here and shifted left by 3px) */
+  .nav-list li:hover {
+    background: var(--body-bg);
+    position: relative;
+    border-radius: 100vw 0 0 100vw;
+
+  }
+  
+  .nav-list li:hover::before,
+  .nav-list li:hover::after {
+    content: "";
+    position: absolute;
+    width: var(--border-radius);
+    height: var(--border-radius);
+    right: 0rem;
+    background: var(--nav-bg);
+  }
+  
+  .nav-list li:hover::before {
+    border-radius: 0 0 var(--border-radius);
+    top: calc(var(--border-radius) * -1);
+    box-shadow: 5px 5px 0 5px var(--body-bg);
+  }
+  
+  .nav-list li:hover::after {
+    border-radius: 0 var(--border-radius) 0 0;
+    bottom: calc(var(--border-radius) * -1);
+    box-shadow: 5px -5px 0 5px var(--body-bg);
+  }
+  
+  /* Remove the active state logic */
+  .nav-list li.active {
+    background: none;
+    border-radius: 0;
+    position: relative;
+  }
+  
+  .nav-list li.active::before,
+  .nav-list li.active::after {
+    content: none;
+  }
+  .nav-list li.active a {
+    font-weight: bold;
+  }
