@@ -38,9 +38,8 @@ This project is a Next.js-based application for refining prompts and generating 
   - Chart.js together with react-chartjs-2
   - react-circular-progressbar
 
-- **Build Tools & Linting:**  
+- **Build Tools: **
   - TypeScript (see [tsconfig.json](tsconfig.json))
-  - ESLint ([.eslintrc.json](.eslintrc.json))
   - PostCSS
 
 ## Project Structure
@@ -123,16 +122,4 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
   - Secure Data Transmission: All data is transmitted using HTTPS.
   - Secure Storage: Sensitive data is encrypted, salted, and hashed where necessary.
   - User Rights: Users can update, export, or delete their personal information in compliance with GDPR regulations.
-
-- **Contributions:**  
-  Contributions and feedback are welcome. Please open a pull request or raise an issue if you have any improvements or bug fixes.
-
-- **Learn More:**  
-  For more information on Next.js, Tailwind CSS, Firebase, and OpenAI API integration, refer to the corresponding documentation:
-  - [Next.js Documentation](https://nextjs.org/docs)
-  - [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-  - [Firebase Documentation](https://firebase.google.com/docs)
-  - [OpenAI API Documentation](https://beta.openai.com/docs)
-
-Happy coding!
 
