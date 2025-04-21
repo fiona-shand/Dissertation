@@ -38,7 +38,7 @@ This project is a Next.js-based application for refining prompts and generating 
   - Chart.js together with react-chartjs-2
   - react-circular-progressbar
 
-- **Build Tools: **
+- **Build Tools:**  
   - TypeScript (see [tsconfig.json](tsconfig.json))
   - PostCSS
 
